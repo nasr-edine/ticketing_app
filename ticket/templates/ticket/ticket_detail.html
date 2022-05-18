@@ -31,4 +31,7 @@
     </tbody>
   </table>
 </div>
+
+<p><a href="{% url 'ticket_edit' object.pk %}">+ Edit Ticket</a></p>
+<p><a href="{% url 'ticket_delete' object.pk %}">+ Delete Ticket</a></p>
 {% endblock content %}
