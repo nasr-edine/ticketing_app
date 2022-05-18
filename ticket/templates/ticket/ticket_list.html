@@ -1,0 +1,29 @@
+{% extends 'ticket/base.html' %}
+
+{% block content %}
+<table class="styled-table">
+    <thead>
+     <tr>
+      <th>Ticket</th>
+      <th>Title</th>
+      <th>Status</th>
+      <th>Assignee</th>
+      <th>Created</th>
+      <th>Last Updated</th>
+     </tr>
+    </thead>
+    <tbody>
+     {% for ticket in object_list %}
+     <tr>
+      <td><a href="{% url 'ticket_detail' ticket.pk %}">{{ticket.pk}}</td>
+      <td>{{ticket.title}}</td>
+      <td>{{ticket.status}}</td>
+      <td>{{ticket.assignee}}</td>
+      <td>{{ticket.created_at}}</td>
+      <td>{{ticket.updated_at}}</td>
+     </tr>
+     {% endfor %}
+    </tbody>
+   </table>
+
+   {% endblock content %}

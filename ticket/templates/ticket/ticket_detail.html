@@ -1,0 +1,34 @@
+<!-- templates/post_detail.html -->
+{% extends 'ticket/base.html' %} {% block content %}
+<div class="ticket">
+  <table class="styled-table">
+    <h2>Ticket #{{object.pk}}</h2>
+    <tbody>
+      <tr>
+        <td>Title</td>
+        <td>{{object.title}}</td>
+      </tr>
+      <tr>
+        <td>Status</td>
+        <td>{{object.status}}</td>
+      </tr>
+      <tr>
+        <td>Assignee</td>
+        <td>{{object.assignee}}</td>
+      </tr>
+      <tr>
+        <td>Description</td>
+        <td>{{object.description}}</td>
+      </tr>
+      <tr>
+        <td>Created At</td>
+        <td>{{object.created_at}}</td>
+      </tr>
+      <tr>
+        <td>Updated At</td>
+        <td>{{object.updated_at}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock content %}
