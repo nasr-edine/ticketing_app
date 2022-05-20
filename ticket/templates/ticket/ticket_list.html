@@ -1,29 +1,35 @@
 {% extends 'ticket/base.html' %}
 
 {% block content %}
-<table class="styled-table">
-    <thead>
-     <tr>
-      <th>Ticket</th>
-      <th>Title</th>
-      <th>Status</th>
-      <th>Assignee</th>
-      <th>Created</th>
-      <th>Last Updated</th>
-     </tr>
-    </thead>
-    <tbody>
-     {% for ticket in object_list %}
-     <tr>
-      <td><a href="{% url 'ticket_detail' ticket.pk %}">{{ticket.pk}}</td>
-      <td>{{ticket.title}}</td>
-      <td>{{ticket.status}}</td>
-      <td>{{ticket.assignee}}</td>
-      <td>{{ticket.created_at}}</td>
-      <td>{{ticket.updated_at}}</td>
-     </tr>
-     {% endfor %}
-    </tbody>
-   </table>
-
-   {% endblock content %}
+    {% if user.is_authenticated %}
+        <p>Hi {{ user.username }}!</p>
+        <p><a href="{% url 'logout' %}">Log out</a></p>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Ticket</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Assignee</th>
+                    <th>Created</th>
+                    <th>Last Updated</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in object_list %}
+                    <tr>
+                        <td><a href="{% url 'ticket_detail' ticket.pk %}">{{ticket.pk}}</td>
+                            <td>{{ticket.title}}</td>
+                            <td>{{ticket.status}}</td>
+                            <td>{{ticket.assignee}}</td>
+                            <td>{{ticket.created_at}}</td>
+                            <td>{{ticket.updated_at}}</td>
+                        </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You are not logged in.</p>
+        <a href="{% url 'login' %}">Log In</a>
+    {% endif %}
+{% endblock content %}
